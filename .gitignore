@@ -1,0 +1,23 @@
+# Local data (download separately per README)
+data/bundle/
+data/feat/feature.pkl
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Project outputs (uncomment if you don't want to ship prediction CSVs)
+# results/
