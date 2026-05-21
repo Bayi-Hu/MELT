@@ -12,19 +12,16 @@ pip install -r requirements.txt
 
 ## Part 1: Feature Generation
 
-You can skip part 1 because we attached a generated feature file under MELT/data/feat.
-
-### Step 1: Download Parsed Transactions
+### Step 1: Download Dataset
 
 Since the raw transaction data is very huge (>1TB), we only provide the parsed transaction datasets on Google Drive:
 
-- [pre_migration_tx.zip](https://drive.google.com/file/d/1rqzkaVoc1FG8XRp-hBxECjiG_PxAn5Cp/view?usp=drive_link) — Pre-migration (bonding curve) transactions
-- [post_migration_tx.zip](https://drive.google.com/file/d/11giAd68Mp_ZyTRgKwPVxeOOP5J5Gb_7f/view?usp=drive_link) — Post-migration (Raydium DEX) transactions
-- [bundle.zip](https://drive.google.com/file/d/1TdSNm6afU39lW6nk7FnM24gQyOReJy1R/view?usp=sharing) — Bundle trace data (required for feature generation)
+- [pre_migration_tx.zip](https://drive.google.com/file/d/1rqzkaVoc1FG8XRp-hBxECjiG_PxAn5Cp/view?usp=drive_link) — Pre-migration (bonding curve) transactions. **Required** for feature generation. Download and unzip under `MELT/data/tx/` (so the parsed transactions sit under `data/tx/...`).
+- [bundle.zip](https://drive.google.com/file/d/1TdSNm6afU39lW6nk7FnM24gQyOReJy1R/view?usp=sharing) — Bundle trace data. **Required** for feature generation. Download and unzip under `MELT/data/` (expands into `data/bundle/`).
+- [post_migration_tx.zip](https://drive.google.com/file/d/11giAd68Mp_ZyTRgKwPVxeOOP5J5Gb_7f/view?usp=drive_link) — Post-migration (Raydium DEX) transactions. **Optional**, very large, **not used by feature generation**. Only download if you want to do your own post-migration analysis.
 
-Pre-migration data is only needed for feature generation, download and unzip it under the `data/tx` directory.
+You can skip Step 2 and download our pre-generated [feature.pkl](https://drive.google.com/file/d/1B9mHhXppgOw33yMSdTMOMXJyMaMjCOzf/view?usp=drive_link) directly. Place it at `MELT/data/feat/feature.pkl` and proceed to Part 2. In this case neither `pre_migration_tx.zip` nor `bundle.zip` is needed.
 
-Download `bundle.zip` and unzip it under `MELT/data/` (it expands into `data/bundle/`).
 
 ### Step 2: Feature Generation
 
@@ -33,7 +30,7 @@ cd MELT/src
 python feat_gen.py
 ```
 
-This process generates features using the pre-migration transactions, bundle trace data and the contextual information. 
+This generates `data/feat/feature.pkl` from the pre-migration transactions, bundle trace data, and contextual information.
 
 ## Part 2: High-risk Launch Detection
 
